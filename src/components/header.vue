@@ -7,7 +7,7 @@
       <a href="#" class="hidden sm:block">home</a>
       <a href="#">add restaurant</a>
       <a href="#">update restaurant</a>
-      <a href="#">logout</a>
+      <a href="#" @click="logout">logout</a>
     </div>
   </div>
 </template>
@@ -26,7 +26,13 @@ export default {
     }
   },
 
-  methods: {},
+  methods: {
+    logout() {
+      //   this.logoutMsg = true;
+      localStorage.clear();
+      this.$router.push({ name: "Login" });
+    },
+  },
 };
 </script>
 <style lang="postcss" scoped>
