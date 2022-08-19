@@ -1,13 +1,15 @@
 <template>
   <div class="w-full bg-gray-300">
     <div class="nav">
-      <a href="#" class="icon"
-        ><img src="../assets/favicon.jpg" alt="icon"
-      /></a>
-      <a href="#" class="hidden sm:block">home</a>
-      <a href="#">add restaurant</a>
-      <a href="#">update restaurant</a>
-      <a href="#" @click="logout">logout</a>
+      <router-link to="/" class="icon"
+        ><img src="@/assets/favicon.jpg" alt="icon"
+      /></router-link>
+      <router-link to="/" class="hidden sm:block nav-item">home</router-link>
+      <router-link to="/add-resto" class="nav-item">add restaurant</router-link>
+      <router-link to="/update-resto" class="nav-item"
+        >update restaurant</router-link
+      >
+      <button class="nav-item capitalize" @click="logout">logout</button>
     </div>
   </div>
 </template>
@@ -41,5 +43,8 @@ export default {
 }
 .icon {
   @apply w-9;
+}
+.nav-item {
+  @apply text-gray-700 hover:text-gray-50 text-lg;
 }
 </style>
