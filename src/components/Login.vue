@@ -49,8 +49,8 @@ export default {
           `http://localhost:3000/users?email=${this.email}&password=${this.password}`
         )
         .then((result) => {
-          console.table(result.data);
-          if (result.data.length > 0) return;
+          // console.table(result.data);
+          if (result.data.length == 0) return;
           localStorage.setItem(
             "restoApp-userInfo",
             JSON.stringify(result.data),

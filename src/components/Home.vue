@@ -1,10 +1,12 @@
 <template>
+  <Header />
   <h1>Hello users, Welcome on Home Page.</h1>
 </template>
 <script>
+import Header from "./header.vue";
 export default {
   name: "Home",
-
+  components: { Header },
   data() {
     return {};
   },
