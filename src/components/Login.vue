@@ -6,32 +6,62 @@
       <input
         class="input"
         type="text"
-        v-model="name"
-        placeholder="Enter Name"
-      />
-      <input
-        class="input"
-        type="text"
         v-model="email"
         placeholder="Enter E-mail"
       />
-      <button class="button">Login</button>
-      <div class="button">
+      <input
+        class="input"
+        type="password"
+        v-model="password"
+        placeholder="Enter Password"
+      />
+      <button class="button" @click="login">Login</button>
+      <div class="button flex">
         <router-link to="/sign-up" class="mx-auto">Sign Up</router-link>
       </div>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   name: "Login",
 
   data() {
-    return {};
+    return {
+      email: "",
+      password: "",
+    };
   },
 
-  mounted() {},
+  mounted() {
+    let user = localStorage.getItem("restoApp-userInfo");
+    if (user) {
+      this.$router.push({ name: "Home" });
+    }
+  },
 
-  methods: {},
+  methods: {
+    async login() {
+      await axios
+        .get(
+          `http://localhost:3000/users?email=${this.email}&password=${this.password}`
+        )
+        .then((result) => {
+          console.table(result.data);
+          if (result.data.length > 0) return;
+          localStorage.setItem(
+            "restoApp-userInfo",
+            JSON.stringify(result.data),
+            console.log("login success")
+          );
+          this.$router.push({ name: "Home" });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
 };
 </script>
