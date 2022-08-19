@@ -22,7 +22,7 @@
         placeholder="Enter Password"
       />
       <button class="button" @click="signUp">Sign Up</button>
-      <div class="button">
+      <div class="button flex">
         <router-link to="/resto-login" class="mx-auto">Login</router-link>
       </div>
     </div>
@@ -51,17 +51,25 @@ export default {
 
   methods: {
     async signUp() {
-      let result = await axios.post("http://localhost:3000/users", {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-      });
-      console.warn(result);
-      if (result.status == 201) {
-        // data created
-        localStorage.setItem("restoApp-userInfo", JSON.stringify(result.data));
-        this.$router.push({ name: "Home" });
-      }
+      if (this.name == "" || this.email == "" || this.password == "") return;
+      await axios
+        .post("http://localhost:3000/users", {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        })
+        .then((result) => {
+          console.table(result);
+          // data created
+          localStorage.setItem(
+            "restoApp-userInfo",
+            JSON.stringify(result.data)
+          );
+          this.$router.push({ name: "Home" });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
 };
