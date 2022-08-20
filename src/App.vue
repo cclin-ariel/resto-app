@@ -8,11 +8,17 @@ export default {
 };
 </script>
 <style lang="postcss">
-.container {
-  @apply mx-auto;
+.box {
+  @apply w-11/12 sm:w-10/12 md:w-8/12 mx-auto mt-10 flex justify-center;
 }
-.nav {
-  @apply w-full sm:w-8/12 mx-auto capitalize flex flex-row justify-around;
+.greetingMsg {
+  @apply text-xl capitalize;
+}
+.tableH {
+  @apply border-b-2 w-full mx-auto capitalize text-lg;
+}
+.tableD {
+  @apply text-center border-t h-12;
 }
 .logo {
   @apply w-8/12 mx-auto max-w-xl mt-12;

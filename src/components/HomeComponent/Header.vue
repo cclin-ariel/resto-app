@@ -1,6 +1,6 @@
 <template>
   <div class="w-full bg-gray-300">
-    <div class="nav">
+    <div class="nav container">
       <router-link to="/" class="icon"
         ><img src="@/assets/favicon.jpg" alt="icon"
       /></router-link>
@@ -39,7 +39,7 @@ export default {
 </script>
 <style lang="postcss" scoped>
 .nav {
-  @apply w-full sm:w-10/12 md:w-8/12 mx-auto capitalize flex flex-row justify-around py-2 items-center;
+  @apply mx-auto capitalize flex flex-row justify-around py-2 items-center;
 }
 .icon {
   @apply w-9;
