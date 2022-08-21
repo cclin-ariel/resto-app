@@ -1,30 +1,15 @@
 <template>
   <img class="logo" src="../assets/LOGO.jpg" alt="logo" />
-  <div class="flex flex-col">
+  <div class="box">
     <div class="register">
-      <div class="text-gray-700 mx-auto text-3xl">Sign Up</div>
-      <input
-        class="input"
-        type="text"
-        v-model="name"
-        placeholder="Enter Name"
-      />
-      <input
-        class="input"
-        type="text"
-        v-model="email"
-        placeholder="Enter E-mail"
-      />
-      <input
-        class="input"
-        type="password"
-        v-model="password"
-        placeholder="Enter Password"
-      />
-      <button class="button" @click="signUp">Sign Up</button>
-      <div class="button flex">
-        <router-link to="/resto-login" class="mx-auto">Login</router-link>
-      </div>
+      <div class="pageTitle">Sign Up</div>
+      <input type="text" v-model="name" placeholder="Enter Name" />
+      <input type="text" v-model="email" placeholder="Enter E-mail" />
+      <input type="password" v-model="password" placeholder="Enter Password" />
+      <button @click="signUp">Sign Up</button>
+      <button>
+        <router-link to="/resto-login">Login</router-link>
+      </button>
     </div>
   </div>
 </template>

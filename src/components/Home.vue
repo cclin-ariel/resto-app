@@ -1,9 +1,9 @@
 <template>
   <Header />
-  <div class="box greetingMsg">Hello {{ userName }}, Welcome on Home Page.</div>
-
   <div class="box">
-    <table class="table-fixed w-full">
+    <div class="greetingMsg">Hello {{ userName }}, Welcome on Home Page.</div>
+    <div class="pageTitle">restaurant list</div>
+    <table class="table-fixed">
       <thead>
         <tr class="tableH">
           <th class="w-">No.</th>
