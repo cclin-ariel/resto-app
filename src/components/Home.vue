@@ -14,8 +14,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="resto in restoList" :key="resto.id" class="tableD">
-          <td>{{ resto.id }}</td>
+        <tr v-for="(resto, index) in restoList" :key="index" class="tableD">
+          <td>{{ index + 1 }}</td>
           <td>{{ resto.name }}</td>
           <td>{{ resto.address }}</td>
           <td>
@@ -23,11 +23,14 @@
               resto.contact
             }}</a>
           </td>
-          <button>
-            <router-link :to="'/update-resto/' + resto.id" class="my-auto"
-              >edit</router-link
-            >
-          </button>
+          <td class="w-full flex justify-between">
+            <button>
+              <router-link :to="'/update-resto/' + resto.id" class="mr-5"
+                >edit</router-link
+              >
+            </button>
+            <button @click="deleteResto(resto)">delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -46,24 +49,40 @@ export default {
     };
   },
 
-  async mounted() {
-    let user = localStorage.getItem("restoApp-userInfo");
-    this.userName = JSON.parse(user)[0].name;
-    if (!user) {
-      this.$router.push({ name: "SignUp" });
-    }
-    await axios
-      .get("http://localhost:3000/restaurant")
-      .then((result) => {
-        // console.log("restoList", result.data);
-        this.restoList = result.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  mounted() {
+    this.loadData();
   },
 
-  methods: {},
+  methods: {
+    async deleteResto(resto) {
+      console.log("delete", resto.id);
+      await axios
+        .delete(`http://localhost:3000/restaurant/${resto.id}`)
+        .then((result) => {
+          console.log(result.status);
+          this.loadData();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    async loadData() {
+      let user = localStorage.getItem("restoApp-userInfo");
+      this.userName = JSON.parse(user)[0].name;
+      if (!user) {
+        this.$router.push({ name: "SignUp" });
+      }
+      await axios
+        .get("http://localhost:3000/restaurant")
+        .then((result) => {
+          // console.log("restoList", result.data);
+          this.restoList = result.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
 };
 </script>
 <style lang="postcss" scoped>
@@ -71,6 +90,6 @@ export default {
   @apply hover:text-blue-400  hover:underline;
 }
 .homeTable button {
-  @apply py-1 my-2  w-16 mx-auto rounded-lg hover:bg-purple-400 bg-purple-600 text-white capitalize;
+  @apply py-1 my-2 w-10 sm:w-16 text-xs sm:text-base mx-auto rounded-lg hover:bg-purple-400 bg-purple-600 text-white capitalize;
 }
 </style>

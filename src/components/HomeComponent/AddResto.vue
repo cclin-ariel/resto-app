@@ -1,7 +1,9 @@
 <template>
   <Header />
   <div class="box">
-    <div class="greetingMsg">Hello users, Welcome on Add restaurant Page.</div>
+    <div class="greetingMsg">
+      Hello {{ userName }}, Welcome on Add restaurant Page.
+    </div>
     <div class="pageTitle">Add New restaurant</div>
 
     <form class="addForm">
@@ -36,6 +38,7 @@ export default {
 
   data() {
     return {
+      userName: "",
       newResto: {
         name: "",
         address: "",
@@ -44,7 +47,13 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() {
+    let user = localStorage.getItem("restoApp-userInfo");
+    this.userName = JSON.parse(user)[0].name;
+    if (!user) {
+      this.$router.push({ name: "SignUp" });
+    }
+  },
 
   methods: {
     async addResto() {

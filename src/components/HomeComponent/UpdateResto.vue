@@ -2,7 +2,7 @@
   <Header />
   <div class="box">
     <div class="greetingMsg">
-      Hello users, Welcome on Update restaurant Page.
+      Hello {{ userName }}, Welcome on Update restaurant Page.
     </div>
     <div class="pageTitle">update restaurant</div>
 
@@ -38,6 +38,7 @@ export default {
 
   data() {
     return {
+      userName: "",
       id: this.$route.params.id,
       updateResto: {
         name: "",
@@ -48,6 +49,7 @@ export default {
   },
   async mounted() {
     let user = localStorage.getItem("restoApp-userInfo");
+    this.userName = JSON.parse(user)[0].name;
     if (!user) {
       this.$router.push({ name: "SignUp" });
     }
@@ -72,7 +74,7 @@ export default {
         this.updateResto.contact == ""
       )
         return;
-      console.log(this.updateResto);
+      // console.log(this.updateResto);
       await axios
         .put(`http://localhost:3000/restaurant/${this.id}`, {
           name: this.updateResto.name,
