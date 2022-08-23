@@ -12,14 +12,14 @@ const routes = [
     path: "/",
   },
   {
-    name: "UpdateResto",
-    component: UpdateResto,
-    path: "/update-resto",
-  },
-  {
     name: "AddResto",
     component: AddResto,
     path: "/add-resto",
+  },
+  {
+    name: "UpdateResto",
+    component: UpdateResto,
+    path: "/update-resto/:id",
   },
   {
     name: "SignUp",

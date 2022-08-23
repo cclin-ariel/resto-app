@@ -6,9 +6,6 @@
       /></router-link>
       <router-link to="/" class="hidden sm:block nav-item">home</router-link>
       <router-link to="/add-resto" class="nav-item">add restaurant</router-link>
-      <router-link to="/update-resto" class="nav-item"
-        >update restaurant</router-link
-      >
       <button class="nav-item capitalize" @click="logout">logout</button>
     </div>
   </div>
