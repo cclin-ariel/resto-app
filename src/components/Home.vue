@@ -25,7 +25,7 @@
           </td>
           <td class="w-full flex justify-between">
             <button>
-              <router-link :to="'/update-resto/' + resto.id" class="mr-5"
+              <router-link :to="'/update-resto/' + resto.id" class="mx-auto"
                 >edit</router-link
               >
             </button>
